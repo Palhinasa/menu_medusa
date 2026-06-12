@@ -1065,40 +1065,355 @@
           uniquement "burgers" ou "accompagnements" pour préserver les filtres automatiques.
        ------------------------------------------------------------- */
     const menuItems = [
-      { 
-        id: 1, 
-        nom: "Le Phare du Congo", 
-        categorie: "burgers", 
-        prix: 6500, 
-        description: "Double steak de bœuf frais (150g), cheddar affiné fondu, oignons caramélisés au porto, roquette fraîche et sauce secrète Medusa. Un classique indémodable.", 
-        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" 
-      },
-      { 
-        id: 2, 
-        nom: "Le Kouilou Spicy", 
-        categorie: "burgers", 
-        prix: 5500, 
-        description: "Filet de poulet croustillant mariné aux épices locales, cheddar fondu, salade croquante, cornichons et sauce mayonnaise maison infusée au piment doux du Congo.", 
-        image: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=800&q=80" 
-      },
-      { 
-        id: 3, 
-        nom: "Frites Maison Medusa", 
-        categorie: "accompagnements", 
-        prix: 2000, 
-        description: "Pommes de terre fraîches locales coupées à la main, frites en double cuisson dans une huile de qualité, parsemées de sel de mer et d'herbes aromatiques.", 
-        image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80" 
-      },
-      { 
-        id: 4, 
-        nom: "Bananes Alloco Premium", 
-        categorie: "accompagnements", 
-        prix: 2500, 
-        description: "Bananes plantains mûres sélectionnées, coupées en rondelles et dorées à la perfection. Servies croustillantes et fondantes avec une petite sauce tomate-piment maison.", 
-        image: "https://images.unsplash.com/photo-1564759224907-65b945ff0e84?auto=format&fit=crop&w=800&q=80" 
-      }
-    ];
 
+  // =========================
+  // LE FUMOIR
+  // =========================
+
+  {
+    id: 1,
+    nom: "Poulet fumé au bois",
+    categorie: "fumoir",
+    prix: 7000,
+    description: "Poulet entier fumé lentement au bois selon la signature MEDUSA FOOD.",
+    image: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 2,
+    nom: "Porc fumé (1 Kg)",
+    categorie: "fumoir",
+    prix: 4000,
+    description: "Porc fumé au bois, tendre et savoureux.",
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 3,
+    nom: "Côtes fumées (1 Kg)",
+    categorie: "fumoir",
+    prix: 5000,
+    description: "Côtes fumées lentement au bois naturel.",
+    image: "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 4,
+    nom: "Queue de bœuf fumée (1 Kg)",
+    categorie: "fumoir",
+    prix: 4500,
+    description: "Queue de bœuf fumée à la saveur intense.",
+    image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 5,
+    nom: "Ailes de dinde fumées (1 Kg)",
+    categorie: "fumoir",
+    prix: 4000,
+    description: "Ailes de dinde fumées lentement au bois.",
+    image: "https://images.unsplash.com/photo-1608039755401-742074f0548d?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 6,
+    nom: "Croupion fumé (1 Kg)",
+    categorie: "fumoir",
+    prix: 4500,
+    description: "Croupion fumé au bois, riche en saveurs.",
+    image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80"
+  },
+
+  // =========================
+  // PLATS CHAUDS
+  // =========================
+
+  {
+    id: 20,
+    nom: "Riz poulet",
+    categorie: "plats",
+    prix: 2500,
+    description: "Riz servi avec poulet en sauce.",
+    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 21,
+    nom: "Riz viande",
+    categorie: "plats",
+    prix: 3000,
+    description: "Riz accompagné de viande mijotée.",
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 22,
+    nom: "Riz poisson",
+    categorie: "plats",
+    prix: 3000,
+    description: "Riz accompagné de poisson savoureux.",
+    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 23,
+    nom: "Fried Rice Medusa",
+    categorie: "plats",
+    prix: 3500,
+    description: "Le riz sauté signature MEDUSA FOOD.",
+    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 24,
+    nom: "Spaghetti viande",
+    categorie: "plats",
+    prix: 3000,
+    description: "Spaghetti accompagnés de viande en sauce.",
+    image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 25,
+    nom: "Spaghetti poulet",
+    categorie: "plats",
+    prix: 3000,
+    description: "Spaghetti servis avec poulet assaisonné.",
+    image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 26,
+    nom: "Pâtes aux crevettes",
+    categorie: "plats",
+    prix: 4500,
+    description: "Pâtes gourmandes aux crevettes.",
+    image: "https://images.unsplash.com/photo-1563379091339-03246963d29a?auto=format&fit=crop&w=800&q=80"
+  },
+
+  // =========================
+  // GRILLADES
+  // =========================
+
+  {
+    id: 40,
+    nom: "Côtes braisées",
+    categorie: "grillades",
+    prix: 3500,
+    description: "Côtes grillées et assaisonnées.",
+    image: "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 41,
+    nom: "Cuisse de poulet",
+    categorie: "grillades",
+    prix: 3000,
+    description: "Cuisse de poulet grillée.",
+    image: "https://images.unsplash.com/photo-1608039755401-742074f0548d?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 42,
+    nom: "Ailes de poulet",
+    categorie: "grillades",
+    prix: 2500,
+    description: "Ailes de poulet grillées.",
+    image: "https://images.unsplash.com/photo-1608039755401-742074f0548d?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 43,
+    nom: "Porc braisé",
+    categorie: "grillades",
+    prix: 3500,
+    description: "Porc grillé à la perfection.",
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 44,
+    nom: "Poisson Jurel",
+    categorie: "grillades",
+    prix: 4000,
+    description: "Jurel grillé aux épices.",
+    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 45,
+    nom: "Poisson Carpe",
+    categorie: "grillades",
+    prix: 5000,
+    description: "Carpe grillée entière.",
+    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
+  },
+
+  // =========================
+  // BROCHETTES
+  // =========================
+
+  {
+    id: 60,
+    nom: "Brochette de foie",
+    categorie: "brochettes",
+    prix: 500,
+    description: "Foie mariné et grillé.",
+    image: "https://images.unsplash.com/photo-1608039755401-742074f0548d?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 61,
+    nom: "Brochette de gésiers",
+    categorie: "brochettes",
+    prix: 500,
+    description: "Gésiers grillés.",
+    image: "https://images.unsplash.com/photo-1608039755401-742074f0548d?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 62,
+    nom: "Brochette de poulet",
+    categorie: "brochettes",
+    prix: 500,
+    description: "Poulet mariné et grillé.",
+    image: "https://images.unsplash.com/photo-1608039755401-742074f0548d?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 63,
+    nom: "Brochette de viande",
+    categorie: "brochettes",
+    prix: 1000,
+    description: "Viande grillée sur brochette.",
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 64,
+    nom: "Brochette de crevettes",
+    categorie: "brochettes",
+    prix: 1500,
+    description: "Crevettes grillées et assaisonnées.",
+    image: "https://images.unsplash.com/photo-1563379091339-03246963d29a?auto=format&fit=crop&w=800&q=80"
+  },
+
+  // =========================
+  // BOUILLONS
+  // =========================
+
+  {
+    id: 80,
+    nom: "Bouillon sauvage",
+    categorie: "bouillons",
+    prix: 3000,
+    description: "Bouillon traditionnel riche en saveurs.",
+    image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 81,
+    nom: "Bouillon de silure",
+    categorie: "bouillons",
+    prix: 4500,
+    description: "Silure mijoté en bouillon.",
+    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 82,
+    nom: "Poisson salé aux aubergines",
+    categorie: "bouillons",
+    prix: 3500,
+    description: "Recette traditionnelle congolaise.",
+    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
+  },
+
+  // =========================
+  // SAUCES & SPÉCIALITÉS
+  // =========================
+
+  {
+    id: 100,
+    nom: "Mafé",
+    categorie: "sauces",
+    prix: 3500,
+    description: "Sauce à la pâte d'arachide servie avec viande ou poulet.",
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 101,
+    nom: "Mwambe au poulet fumé",
+    categorie: "sauces",
+    prix: 4000,
+    description: "Spécialité maison au poulet fumé.",
+    image: "https://images.unsplash.com/photo-1608039755401-742074f0548d?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 102,
+    nom: "Poulet yassa",
+    categorie: "sauces",
+    prix: 3500,
+    description: "Poulet mariné aux oignons et citron.",
+    image: "https://images.unsplash.com/photo-1608039755401-742074f0548d?auto=format&fit=crop&w=800&q=80"
+  },
+
+  // =========================
+  // ACCOMPAGNEMENTS
+  // =========================
+
+  {
+    id: 120,
+    nom: "Banane frite",
+    categorie: "accompagnements",
+    prix: 1000,
+    description: "Plantain doré à souhait.",
+    image: "https://images.unsplash.com/photo-1564759224907-65b945ff0e84?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 121,
+    nom: "Frites maison",
+    categorie: "accompagnements",
+    prix: 1500,
+    description: "Pommes de terre fraîches.",
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 122,
+    nom: "Saka-Saka",
+    categorie: "accompagnements",
+    prix: 1500,
+    description: "Feuilles de manioc cuisinées.",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
+  },
+
+  // =========================
+  // BOISSONS
+  // =========================
+
+  {
+    id: 140,
+    nom: "Eau minérale",
+    categorie: "boissons",
+    prix: 500,
+    description: "Bouteille d'eau fraîche.",
+    image: "https://images.unsplash.com/photo-1564419320408-38e24e038e1c?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    id: 141,
+    nom: "Jus naturel",
+    categorie: "boissons",
+    prix: 1500,
+    description: "Jus frais du jour.",
+    image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=800&q=80"
+  }
+
+];
     /* -------------------------------------------------------------
        ÉTAT GLOBAL DE L'APPLICATION (PANIER)
        ------------------------------------------------------------- */
