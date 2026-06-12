@@ -1,0 +1,1401 @@
+Edited index.html
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEDUSA FOOD | Menu Digital Premium - Pointe-Noire</title>
+  
+  <!-- Polices Premium depuis Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------
+       DESIGN SYSTEM & VARIABLES
+       ------------------------------------------------------------- */
+    :root {
+      --primary: #800020;         /* Bordeaux/Maroon Premium */
+      --primary-hover: #5a0016;   /* Bordeaux Foncé pour les hovers */
+      --bg-dark: #121212;         /* Noir Élégant */
+      --bg-card: #1c1c1e;         /* Fond des cartes (Gris très foncé) */
+      --bg-card-hover: #252528;   /* Fond des cartes au survol */
+      --text-light: #ffffff;      /* Blanc Pur */
+      --text-muted: #a1a1a5;     /* Gris pour textes secondaires */
+      --accent: #d4af37;          /* Or subtil pour les accents de prix */
+      --white: #ffffff;
+      --border-color: #2c2c2e;    /* Bordure moderne et discrète */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.7);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Réinitialisation de base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary) var(--bg-dark);
+    }
+
+    /* Custom Scrollbar */
+    *::-webkit-scrollbar {
+      width: 6px;
+    }
+    *::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    *::-webkit-scrollbar-thumb {
+      background-color: var(--primary);
+      border-radius: 10px;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* -------------------------------------------------------------
+       TYPOGRAPHIE & TITRES
+       ------------------------------------------------------------- */
+    h1, h2, h3, .brand-title {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0.5px;
+    }
+
+    /* -------------------------------------------------------------
+       HEADER / NAVIGATION
+       ------------------------------------------------------------- */
+    header {
+      background: rgba(18, 18, 18, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-title span {
+      color: var(--primary);
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 600;
+    }
+
+    /* -------------------------------------------------------------
+       HERO BANNER
+       ------------------------------------------------------------- */
+    .hero-banner {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(18, 18, 18, 1)), 
+                  url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-banner h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .hero-banner p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      font-weight: 300;
+    }
+
+    /* -------------------------------------------------------------
+       MAIN LAYOUT
+       ------------------------------------------------------------- */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      width: 100%;
+      flex-grow: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr 380px;
+        align-items: start;
+      }
+    }
+
+    /* -------------------------------------------------------------
+       FILTRE CATEGORIES (PILLS)
+       ------------------------------------------------------------- */
+    .categories-container {
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      scrollbar-width: none; /* Cache barre de défilement sur Firefox */
+    }
+
+    .categories-container::-webkit-scrollbar {
+      display: none; /* Cache barre de défilement sur Chrome/Safari */
+    }
+
+    .category-btn {
+      background-color: var(--bg-card);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .category-btn:hover {
+      border-color: var(--primary);
+      color: var(--white);
+    }
+
+    .category-btn.active {
+      background-color: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+      box-shadow: 0 4px 15px rgba(128, 0, 32, 0.4);
+    }
+
+    /* -------------------------------------------------------------
+       MENU GRID & CARDS
+       ------------------------------------------------------------- */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.75rem;
+      transition: var(--transition);
+    }
+
+    .menu-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+      background-color: var(--bg-card-hover);
+      border-color: rgba(128, 0, 32, 0.5);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-image-wrapper {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      background-color: #252528;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .menu-card:hover .card-image {
+      transform: scale(1.08);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(18, 18, 18, 0.85);
+      backdrop-filter: blur(5px);
+      border: 1px solid var(--border-color);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card-content {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .card-description {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-weight: 300;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .card-price {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .btn-add {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .btn-add:hover {
+      background-color: var(--primary-hover);
+      box-shadow: 0 4px 12px rgba(128, 0, 32, 0.3);
+    }
+
+    .btn-add:active {
+      transform: scale(0.95);
+    }
+
+    /* -------------------------------------------------------------
+       BASKET / SIDEBAR & FLOATING (RESPONSIVE)
+       ------------------------------------------------------------- */
+    /* Sidebar Basket (Desktop) */
+    .basket-sidebar {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      position: sticky;
+      top: 100px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 140px);
+    }
+
+    .basket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .basket-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .basket-count-badge {
+      background-color: var(--primary);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+    }
+
+    .basket-items {
+      overflow-y: auto;
+      flex-grow: 1;
+      margin-bottom: 1.25rem;
+      padding-right: 0.25rem;
+    }
+
+    .basket-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .basket-item-info {
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    .basket-item-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .basket-item-price {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .basket-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .qty-btn {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-light);
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .qty-btn:hover {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .qty-number {
+      font-size: 0.9rem;
+      font-weight: 700;
+      min-width: 18px;
+      text-align: center;
+    }
+
+    .btn-delete {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+
+    .btn-delete:hover {
+      color: #ff3b30;
+      background-color: rgba(255, 59, 48, 0.1);
+    }
+
+    .basket-empty-msg {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+    .basket-summary {
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .basket-summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .basket-total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--white);
+      border-top: 1px dashed var(--border-color);
+      padding-top: 0.75rem;
+    }
+
+    .basket-total-price {
+      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .basket-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-checkout {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 0.9rem;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .btn-checkout:hover {
+      background-color: var(--primary-hover);
+      box-shadow: 0 4px 15px rgba(128, 0, 32, 0.4);
+    }
+
+    .btn-checkout:active {
+      transform: scale(0.98);
+    }
+
+    .btn-clear {
+      background: none;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.6rem;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-clear:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+      color: var(--white);
+      border-color: var(--text-muted);
+    }
+
+    /* Floating Basket Toggle (Mobile-only trigger) */
+    .floating-basket-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 1rem 1.5rem;
+      font-family: inherit;
+      font-weight: 700;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+      z-index: 90;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: var(--transition);
+      animation: pulse 2s infinite;
+    }
+
+    .floating-basket-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .floating-badge {
+      background-color: var(--white);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+    }
+
+    /* Mobile Basket Drawer / Slide-over */
+    .basket-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      background-color: var(--bg-dark);
+      z-index: 150;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      border-left: 1px solid var(--border-color);
+    }
+
+    .basket-drawer.open {
+      right: 0;
+    }
+
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 140;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .drawer-overlay.open {
+      display: block;
+    }
+
+    .btn-close-drawer {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .btn-close-drawer:hover {
+      color: var(--primary);
+    }
+
+    @media (min-width: 1024px) {
+      .floating-basket-btn, .basket-drawer, .drawer-overlay {
+        display: none !important;
+      }
+      .basket-sidebar {
+        display: flex !important;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      .basket-sidebar {
+        display: none !important;
+      }
+    }
+
+    /* -------------------------------------------------------------
+       MODAL DE COMMANDE (CHECKOUT)
+       ------------------------------------------------------------- */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 480px;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .btn-close-modal {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .btn-close-modal:hover {
+      color: var(--white);
+      background-color: rgba(255,255,255,0.05);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      color: var(--text-light);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 0 2px rgba(128, 0, 32, 0.2);
+    }
+
+    .form-input::placeholder {
+      color: #55555a;
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .btn-submit-order {
+      background-color: #25d366; /* Vert WhatsApp */
+      color: var(--white);
+      border: none;
+      padding: 1rem;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      width: 100%;
+      margin-top: 1.5rem;
+    }
+
+    .btn-submit-order:hover {
+      background-color: #1ebd57;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-submit-order:active {
+      transform: scale(0.98);
+    }
+
+    /* -------------------------------------------------------------
+       FOOTER
+       ------------------------------------------------------------- */
+    footer {
+      background-color: rgba(18, 18, 18, 0.95);
+      border-top: 1px solid var(--border-color);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-logo span {
+      color: var(--primary);
+    }
+
+    .footer-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .footer-copyright {
+      font-size: 0.75rem;
+      color: #55555a;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1.5rem;
+    }
+
+    /* -------------------------------------------------------------
+       ANIMATIONS
+       ------------------------------------------------------------- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4), 0 0 0 0 rgba(128, 0, 32, 0.7);
+      }
+      70% {
+        box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4), 0 0 0 10px rgba(128, 0, 32, 0);
+      }
+      100% {
+        box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4), 0 0 0 0 rgba(128, 0, 32, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- EN-TÊTE DU SITE -->
+  <header>
+    <div class="brand">
+      <div class="brand-title">MEDUSA<span>FOOD</span></div>
+      <div class="brand-subtitle">Pointe-Noire</div>
+    </div>
+    <!-- Bouton Panier flottant en version mobile, caché sur desktop -->
+    <button class="floating-basket-btn" onclick="toggleDrawer(true)" aria-label="Ouvrir le panier">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      <span>Mon Panier</span>
+      <span class="floating-badge" id="floating-badge-count">0</span>
+    </button>
+  </header>
+
+  <!-- BANNIÈRE HERO PRINCIPALE -->
+  <section class="hero-banner">
+    <h2>L'EXCELLENCE DE LA STREET-FOOD</h2>
+    <p>Savourez nos recettes signatures haut de gamme élaborées avec passion au cœur de Pointe-Noire. Des ingrédients d'exception pour un plaisir incomparable.</p>
+  </section>
+
+  <!-- CONTENEUR PRINCIPAL -->
+  <div class="container">
+    
+    <!-- SECTION DE GAUCHE : MENU & CATÉGORIES -->
+    <main>
+      <!-- Onglets Filtres Catégories -->
+      <div class="categories-container" id="categories-container">
+        <!-- Généré dynamiquement en JavaScript -->
+      </div>
+
+      <!-- Grille des plats du menu -->
+      <div class="menu-grid" id="menu-grid">
+        <!-- Les cartes des plats seront injectées dynamiquement par JS -->
+      </div>
+    </main>
+
+    <!-- SECTION DE DROITE : PANIER DESKTOP -->
+    <aside>
+      <div class="basket-sidebar">
+        <div class="basket-header">
+          <div class="basket-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span>Mon Panier</span>
+          </div>
+          <span class="basket-count-badge" id="basket-count-desktop">0</span>
+        </div>
+
+        <div class="basket-items" id="basket-items-desktop">
+          <!-- Les articles ajoutés seront injectés ici -->
+        </div>
+
+        <div class="basket-summary">
+          <div class="basket-summary-row">
+            <span style="color: var(--text-muted);">Sous-total</span>
+            <span id="subtotal-desktop">0 FCFA</span>
+          </div>
+          <div class="basket-summary-row">
+            <span style="color: var(--text-muted);">Frais de livraison</span>
+            <span style="color: #25d366; font-weight: 600;">Calculés à l'envoi</span>
+          </div>
+          <div class="basket-total-row">
+            <span>Total</span>
+            <span class="basket-total-price" id="total-desktop">0 FCFA</span>
+          </div>
+
+          <div class="basket-actions">
+            <button class="btn-checkout" onclick="openCheckoutModal()">
+              <span>Commander</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button class="btn-clear" onclick="clearCart()">Vider le panier</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- PANIER TIROIR MOBILE (DÉROULANT DE LA DROITE) -->
+  <div class="drawer-overlay" id="drawer-overlay" onclick="toggleDrawer(false)"></div>
+  <div class="basket-drawer" id="basket-drawer">
+    <div class="basket-header">
+      <div class="basket-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span>Mon Panier</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span class="basket-count-badge" id="basket-count-mobile">0</span>
+        <button class="btn-close-drawer" onclick="toggleDrawer(false)" aria-label="Fermer le panier">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="basket-items" id="basket-items-mobile">
+      <!-- Les articles ajoutés seront injectés ici -->
+    </div>
+
+    <div class="basket-summary">
+      <div class="basket-summary-row">
+        <span style="color: var(--text-muted);">Sous-total</span>
+        <span id="subtotal-mobile">0 FCFA</span>
+      </div>
+      <div class="basket-summary-row">
+        <span style="color: var(--text-muted);">Frais de livraison</span>
+        <span style="color: #25d366; font-weight: 600;">Calculés à l'envoi</span>
+      </div>
+      <div class="basket-total-row">
+        <span>Total</span>
+        <span class="basket-total-price" id="total-mobile">0 FCFA</span>
+      </div>
+
+      <div class="basket-actions">
+        <button class="btn-checkout" onclick="openCheckoutModal()">
+          <span>Commander</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+        <button class="btn-clear" onclick="clearCart()">Vider le panier</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE FINALISATION DE LA COMMANDE -->
+  <div class="modal-backdrop" id="modal-backdrop" onclick="closeCheckoutModalOnBackdrop(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Finaliser ma commande</h3>
+        <button class="btn-close-modal" onclick="closeCheckoutModal()" aria-label="Fermer la fenêtre">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <form id="checkout-form" onsubmit="handleOrderSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="client-name">Nom complet *</label>
+          <input class="form-input" type="text" id="client-name" required placeholder="Ex. Jean Mouyabi">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="client-phone">Numéro de téléphone *</label>
+          <input class="form-input" type="tel" id="client-phone" required placeholder="Ex. 06 993 00 00">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="client-address">Adresse de livraison (Pointe-Noire) *</label>
+          <textarea class="form-input" id="client-address" required placeholder="Ex. Centre-ville, en face de la Banque centrale, Villa 45"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit-order">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.835-3c1.654.982 3.51 1.5 5.409 1.5 5.927 0 10.75-4.82 10.754-10.748.002-2.872-1.116-5.573-3.149-7.608C17.824 2.11 15.125.992 12.25.992c-5.933 0-10.757 4.823-10.762 10.752-.001 1.95.51 3.85 1.478 5.53l-.997 3.637 3.725-.977zm10.158-6.797c-.287-.144-1.701-.84-1.964-.936-.263-.096-.455-.144-.647.144-.192.288-.743.936-.91 1.127-.168.193-.336.216-.624.072-.288-.144-1.215-.448-2.316-1.43-1.004-.897-1.683-2.007-1.88-2.343-.197-.336-.021-.518.122-.661.129-.129.288-.336.432-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.647-1.56-.886-2.136-.233-.56-.47-.482-.647-.492-.167-.008-.36-.01-.55-.01s-.504.072-.768.36c-.264.288-1.007.984-1.007 2.399 0 1.416 1.031 2.784 1.175 2.976.144.192 2.03 3.1 4.918 4.348 2.888 1.248 2.888.832 3.416.784.528-.048 1.701-.696 1.941-1.368.24-.672.24-1.248.168-1.368-.072-.12-.264-.192-.551-.336z"/></svg>
+          <span>Confirmer sur WhatsApp</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER AVEC INFORMATIONS COMPLÉMENTAIRES -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">MEDUSA<span>FOOD</span></div>
+      <p class="footer-info">
+        Rond-Point central, face à l'Hôtel de Ville, Pointe-Noire, République du Congo.<br>
+        Service client direct : +242 06 993 00 00<br>
+        Ouvert du mardi au dimanche de 12h00 à 23h00.
+      </p>
+      <p class="footer-copyright">
+        &copy; 2026 MEDUSA FOOD. Tous droits réservés. Conçu pour une expérience client d'exception.
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIQUE APPLICATIVE -->
+  <script>
+    /* -------------------------------------------------------------
+       BASE DE DONNÉES DU MENU (FACILEMENT MODIFIABLE)
+       -------------------------------------------------------------
+       Pour personnaliser ce menu :
+       1. CHANGEMENT DE PRIX : Modifiez la propriété 'prix'. Le prix est un entier
+          sans décimale ni devise (ex: 5500 pour 5500 FCFA).
+       2. NOM OU DESCRIPTION : Modifiez les textes entre guillemets de 'nom' ou 'description'.
+       3. MODIFICATION D'IMAGE : Remplacez l'URL de la propriété 'image' par une autre
+          adresse HTTP valide (par exemple de Unsplash).
+       4. ORGANISATION DES CATÉGORIES : Modifiez la propriété 'categorie' en utilisant 
+          uniquement "burgers" ou "accompagnements" pour préserver les filtres automatiques.
+       ------------------------------------------------------------- */
+    const menuItems = [
+      { 
+        id: 1, 
+        nom: "Le Phare du Congo", 
+        categorie: "burgers", 
+        prix: 6500, 
+        description: "Double steak de bœuf frais (150g), cheddar affiné fondu, oignons caramélisés au porto, roquette fraîche et sauce secrète Medusa. Un classique indémodable.", 
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" 
+      },
+      { 
+        id: 2, 
+        nom: "Le Kouilou Spicy", 
+        categorie: "burgers", 
+        prix: 5500, 
+        description: "Filet de poulet croustillant mariné aux épices locales, cheddar fondu, salade croquante, cornichons et sauce mayonnaise maison infusée au piment doux du Congo.", 
+        image: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=800&q=80" 
+      },
+      { 
+        id: 3, 
+        nom: "Frites Maison Medusa", 
+        categorie: "accompagnements", 
+        prix: 2000, 
+        description: "Pommes de terre fraîches locales coupées à la main, frites en double cuisson dans une huile de qualité, parsemées de sel de mer et d'herbes aromatiques.", 
+        image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80" 
+      },
+      { 
+        id: 4, 
+        nom: "Bananes Alloco Premium", 
+        categorie: "accompagnements", 
+        prix: 2500, 
+        description: "Bananes plantains mûres sélectionnées, coupées en rondelles et dorées à la perfection. Servies croustillantes et fondantes avec une petite sauce tomate-piment maison.", 
+        image: "https://images.unsplash.com/photo-1564759224907-65b945ff0e84?auto=format&fit=crop&w=800&q=80" 
+      }
+    ];
+
+    /* -------------------------------------------------------------
+       ÉTAT GLOBAL DE L'APPLICATION (PANIER)
+       ------------------------------------------------------------- */
+    let cart = [];
+    let activeCategory = 'tous';
+
+    // Formatage des prix en FCFA avec séparateur de milliers
+    function formatPrice(number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " FCFA";
+    }
+
+    /* -------------------------------------------------------------
+       RENDU DES COMPOSANTS (MENU ET FILTRES)
+       ------------------------------------------------------------- */
+    
+    // Génère les onglets de catégories de manière dynamique
+    function renderCategoryFilters() {
+      // Extraction des catégories uniques présentes dans les données
+      const categories = ['tous', ...new Set(menuItems.map(item => item.categorie))];
+      const container = document.getElementById('categories-container');
+      
+      container.innerHTML = categories.map(cat => {
+        const label = cat.charAt(0).toUpperCase() + cat.slice(1);
+        const isActive = cat === activeCategory ? 'active' : '';
+        return `
+          <button class="category-btn ${isActive}" onclick="filterCategory('${cat}')">
+            ${cat === 'tous' ? '🍽️' : cat === 'burgers' ? '🍔' : '🍟'} ${label}
+          </button>
+        `;
+      }).join('');
+    }
+
+    // Filtre la liste affichée
+    function filterCategory(category) {
+      activeCategory = category;
+      renderCategoryFilters();
+      renderMenu();
+    }
+
+    // Génère la liste des cartes d'articles du menu
+    function renderMenu() {
+      const grid = document.getElementById('menu-grid');
+      const filteredItems = activeCategory === 'tous' 
+        ? menuItems 
+        : menuItems.filter(item => item.categorie === activeCategory);
+
+      if (filteredItems.length === 0) {
+        grid.innerHTML = `<p style="text-align: center; grid-column: 1/-1; color: var(--text-muted);">Aucun article disponible.</p>`;
+        return;
+      }
+
+      grid.innerHTML = filteredItems.map(item => `
+        <article class="menu-card" data-id="${item.id}">
+          <div class="card-image-wrapper">
+            <img class="card-image" src="${item.image}" alt="${item.nom}" loading="lazy">
+            <span class="card-badge">${item.categorie}</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">${item.nom}</h3>
+            <p class="card-description">${item.description}</p>
+            <div class="card-footer">
+              <span class="card-price">${formatPrice(item.prix)}</span>
+              <button class="btn-add" onclick="addToCart(${item.id})">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Ajouter</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    /* -------------------------------------------------------------
+       GESTION DU PANIER (AJOUTS, QUANTITÉS, AJUSTEMENTS)
+       ------------------------------------------------------------- */
+    
+    // Ajouter un produit dans le panier ou incrémenter sa quantité
+    function addToCart(id) {
+      const existingItem = cart.find(item => item.id === id);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        const itemData = menuItems.find(item => item.id === id);
+        cart.push({
+          ...itemData,
+          quantity: 1
+        });
+      }
+      
+      updateCartUI();
+      
+      // Petit effet visuel d'ajout sur le bouton de panier mobile
+      const btn = document.querySelector('.floating-basket-btn');
+      btn.style.transform = 'scale(1.1)';
+      setTimeout(() => { btn.style.transform = 'none'; }, 200);
+    }
+
+    // Diminuer la quantité ou supprimer l'article si quantité = 1
+    function decreaseQuantity(id) {
+      const item = cart.find(item => item.id === id);
+      if (item) {
+        item.quantity -= 1;
+        if (item.quantity <= 0) {
+          removeFromCart(id);
+        } else {
+          updateCartUI();
+        }
+      }
+    }
+
+    // Augmenter la quantité depuis le panier directement
+    function increaseQuantity(id) {
+      const item = cart.find(item => item.id === id);
+      if (item) {
+        item.quantity += 1;
+        updateCartUI();
+      }
+    }
+
+    // Supprimer totalement un produit du panier
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCartUI();
+    }
+
+    // Vider complètement le panier
+    function clearCart() {
+      cart = [];
+      updateCartUI();
+    }
+
+    // Calcul du montant total du panier
+    function getCartTotal() {
+      return cart.reduce((sum, item) => sum + (item.prix * item.quantity), 0);
+    }
+
+    // Calcul du nombre total d'articles dans le panier
+    function getCartCount() {
+      return cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    // Met à jour toute l'interface liée au panier (Mobile et Desktop)
+    function updateCartUI() {
+      const count = getCartCount();
+      const total = getCartTotal();
+      const formattedTotal = formatPrice(total);
+
+      // 1. Mise à jour des badges de comptage
+      document.getElementById('floating-badge-count').textContent = count;
+      document.getElementById('basket-count-desktop').textContent = count;
+      document.getElementById('basket-count-mobile').textContent = count;
+
+      // 2. Mise à jour des totaux financiers
+      document.getElementById('subtotal-desktop').textContent = formattedTotal;
+      document.getElementById('total-desktop').textContent = formattedTotal;
+      document.getElementById('subtotal-mobile').textContent = formattedTotal;
+      document.getElementById('total-mobile').textContent = formattedTotal;
+
+      // 3. Rendu de la liste d'articles pour Desktop
+      const itemsContainerDesktop = document.getElementById('basket-items-desktop');
+      renderCartItemList(itemsContainerDesktop);
+
+      // 4. Rendu de la liste d'articles pour Mobile
+      const itemsContainerMobile = document.getElementById('basket-items-mobile');
+      renderCartItemList(itemsContainerMobile);
+    }
+
+    // Rendu dynamique de la liste des items du panier dans un conteneur donné
+    function renderCartItemList(container) {
+      if (cart.length === 0) {
+        container.innerHTML = `<div class="basket-empty-msg">Votre panier est vide. Choisissez nos délicieuses créations pour commencer !</div>`;
+        return;
+      }
+
+      container.innerHTML = cart.map(item => `
+        <div class="basket-item">
+          <div class="basket-item-info">
+            <div class="basket-item-name" title="${item.nom}">${item.nom}</div>
+            <div class="basket-item-price">${formatPrice(item.prix * item.quantity)}</div>
+          </div>
+          <div class="basket-item-controls">
+            <button class="qty-btn" onclick="decreaseQuantity(${item.id})">-</button>
+            <span class="qty-number">${item.quantity}</span>
+            <button class="qty-btn" onclick="increaseQuantity(${item.id})">+</button>
+            <button class="btn-delete" onclick="removeFromCart(${item.id})" aria-label="Supprimer ${item.nom}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* -------------------------------------------------------------
+       GESTION DES TIROIRS ET DE LA MODAL
+       ------------------------------------------------------------- */
+    
+    // Ouvrir ou fermer le tiroir du panier mobile
+    function toggleDrawer(isOpen) {
+      const drawer = document.getElementById('basket-drawer');
+      const overlay = document.getElementById('drawer-overlay');
+      if (isOpen) {
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+      } else {
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+      }
+    }
+
+    // Ouvrir la modal de finalisation de commande
+    function openCheckoutModal() {
+      if (cart.length === 0) {
+        alert("Votre panier est vide. Veuillez ajouter des produits avant de commander.");
+        return;
+      }
+      // Ferme le tiroir mobile s'il était ouvert
+      toggleDrawer(false);
+      document.getElementById('modal-backdrop').classList.add('open');
+    }
+
+    // Fermer la modal
+    function closeCheckoutModal() {
+      document.getElementById('modal-backdrop').classList.remove('open');
+    }
+
+    // Fermeture de la modal lors du clic sur le fond transparent flouté
+    function closeCheckoutModalOnBackdrop(event) {
+      if (event.target.id === 'modal-backdrop') {
+        closeCheckoutModal();
+      }
+    }
+
+    /* -------------------------------------------------------------
+       INTEGRATION WHATSAPP & SOUMISSION DE COMMANDE
+       ------------------------------------------------------------- */
+    
+    // Soumission finale de la commande
+    function handleOrderSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('client-name').value.trim();
+      const phone = document.getElementById('client-phone').value.trim();
+      const address = document.getElementById('client-address').value.trim();
+
+      if (!name || !phone || !address) {
+        alert("Veuillez remplir tous les champs requis.");
+        return;
+      }
+
+      // Construction de la chaîne textuelle du message pour WhatsApp
+      let message = `🍔 *NOUVELLE COMMANDE - MEDUSA FOOD* 🍔\n`;
+      message += `--------------------------------------\n`;
+      message += `👤 *Client :* ${name}\n`;
+      message += `📞 *Téléphone :* ${phone}\n`;
+      message += `📍 *Adresse de livraison :* ${address}, Pointe-Noire\n`;
+      message += `--------------------------------------\n`;
+      message += `🛒 *DÉTAILS DU PANIER :*\n`;
+
+      cart.forEach(item => {
+        const itemTotal = item.prix * item.quantity;
+        message += `- ${item.quantity}x ${item.nom} (${formatPrice(item.prix)}/u) : *${formatPrice(itemTotal)}*\n`;
+      });
+
+      const totalAmount = getCartTotal();
+      message += `--------------------------------------\n`;
+      message += `💰 *TOTAL DE LA COMMANDE :* *${formatPrice(totalAmount)}*\n`;
+      message += `--------------------------------------\n`;
+      message += `Merci de valider ma commande et de m'indiquer le délai de livraison !`;
+
+      // Encodage URL du message
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/242069930000?text=${encodedMessage}`;
+
+      // Redirection sécurisée vers WhatsApp
+      window.open(whatsappUrl, '_blank');
+
+      // Vider le panier après soumission et fermer la modal
+      clearCart();
+      closeCheckoutModal();
+      
+      // Remise à zéro du formulaire
+      document.getElementById('checkout-form').reset();
+    }
+
+    /* -------------------------------------------------------------
+       INITIALISATION DE L'APPLICATION
+       ------------------------------------------------------------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategoryFilters();
+      renderMenu();
+      updateCartUI();
+    });
+  </script>
+</body>
+</html>
+```
